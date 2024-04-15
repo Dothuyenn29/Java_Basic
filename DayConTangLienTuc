@@ -1,0 +1,63 @@
+
+package Basic;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class DayConTangLienTiepdaiNhat {
+    public static void solve(int[] a, int n){
+        int cnt = 1, maxCnt = 1;
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i = 1 ; i < n;i++){
+                if (a[i]  > a[i - 1]) {
+                    cnt++;
+                } else {
+                    cnt = 1;
+                }
+                if(cnt > maxCnt){
+                    maxCnt = cnt;
+                }      
+        }
+              System.out.print(maxCnt);
+              if(maxCnt == 1){
+               for(int x : a){
+                             System.out.println(x);
+                  
+              }
+               return;
+              }
+              cnt = 1;
+                for(int i = 1;i<n;i++){
+                         if(a[i] >  a[i - 1]) {
+                                 cnt++;
+                         } else  {
+                                  cnt = 1;
+                             }
+                     if(cnt == maxCnt) {
+                        for(int j = i - cnt +1; j <= i; j++) {
+                                  System.out.print( a[j]+" ");
+                        }
+                        System.out.println(" ");
+                    }
+                }
+                }
+        public static void main(String[]args) {
+                Scanner sc = new Scanner(System.in);
+                  int testcase = sc.nextInt();
+                  for(int t = 1; t <= testcase; t++) {
+                      int n = sc.nextInt();
+                      int[]  a =  new int[n];
+                     for(int i = 0 ; i < n; i++) {
+                           a[i] = sc.nextInt();
+                     }
+                         System.out.println("Test  # "  + t + "  : ");
+                         solve(a,n); 
+                            }
+                }
+}
+        
+
+
+         
+        
+
