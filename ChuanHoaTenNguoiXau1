@@ -1,0 +1,28 @@
+
+package Basic;
+
+import java.util.Scanner;
+
+public class ChuanHoaTenNguoiXau1 {
+          public static void main(String[] args) {
+                Scanner sc = new Scanner(System.in);
+                String fullName = sc.nextLine();
+                String[] nameParts = fullName.trim().split("\\s+");
+                StringBuilder standardizedFullName = new StringBuilder();
+                for (String namePart : nameParts) {
+                    char firstChar = Character.toUpperCase(namePart.charAt(0));
+                    String restOfName = namePart.substring(1).toLowerCase();
+                    standardizedFullName.append(firstChar).append(restOfName).append(" ");
+                }
+        standardizedFullName.setLength(standardizedFullName.length() - 1);
+        String birthDate = sc.nextLine();
+        String[] dateParts = birthDate.split("/");
+        String day = dateParts[0];
+        String month = dateParts[1];
+        String year = dateParts[2];
+        String standardizedBirthDate = String.format("%02d/%02d/%s", Integer.parseInt(day), Integer.parseInt(month), year);
+        System.out.println(standardizedFullName);
+        System.out.println(standardizedBirthDate);
+    }
+}
+
