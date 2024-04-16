@@ -1,0 +1,32 @@
+package Basic;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+public class SapXepCacTu {
+        public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+
+        // Tách xâu thành các từ
+        String[] words = s.split("\\s+");
+
+        // Sắp xếp các từ theo thứ tự từ điển tăng dần
+        Arrays.sort(words);
+
+        // In ra các từ theo thứ tự từ điển tăng dần
+        System.out.println("Thứ tự từ điển tăng dần:");
+        for (String word : words) {
+            System.out.print(word + " ");
+        }
+
+        // Sắp xếp các từ theo thứ tự từ điển giảm dần
+        Arrays.sort(words, Collections.reverseOrder());
+
+        // In ra các từ theo thứ tự từ điển giảm dần
+        System.out.println("\nThứ tự từ điển giảm dần:");
+        for (String word : words) {
+            System.out.print(word + " ");
+        }
+    }
+}
