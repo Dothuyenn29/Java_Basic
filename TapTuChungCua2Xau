@@ -1,0 +1,21 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+         String[] arr1= sc.nextLine().toLowerCase().split("\\s+");
+         String[] arr2 = sc.nextLine().toLowerCase().split("\\s+");
+        TreeSet<String> set1  = new TreeSet<>();
+        HashSet<String> set2  = new HashSet<>();
+        for(String x : arr1)      set1.add(x);
+        for(String x : arr2)      set2.add(x);
+        for(String x : set1){
+                 if(set2.contains(x))
+                         System.out.print(x+" ");
+        }   
+    }
+}
