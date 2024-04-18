@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+    public static void main(String[] args) {
+          Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(); 
+        int[] bricks = new int[n];
+        for (int i = 0; i < n; i++) {
+            bricks[i] = sc.nextInt();
+        }
+        int[] dp = new int[n];
+        Arrays.fill(dp, 1);
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (bricks[j] >= i) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            maxHeight = Math.max(max, dp[i]);
+        }
+        System.out.println(max);
+    }
+}
