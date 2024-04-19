@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+
+ class SinhVien {
+    private String ma, ten,lop, ngaysinh;
+    private double gpa;
+
+    public SinhVien(String ma, String ten, String lop, String ngaysinh, double gpa) {
+        this.ma = ma;
+        this.ten = ten;
+        this.lop = lop;
+        this.ngaysinh = ngaysinh;
+        this.gpa = gpa;
+    }
+
+public void chuanHoa(){
+    StringBuilder sb = new StringBuilder(ngaysinh);
+    if(sb.charAt(1) == '/') sb.insert(0,"0");
+    if(sb.charAt(4) == '/') sb.insert(3,"0");
+    this.ngaysinh = sb.toString();
+}
+    public void in(){
+        System.out.println(ma+" "+ten+ " "+  lop +"  "+ngaysinh + "  "+ String.format("%.1f",gpa));
+    }
+    
+    public String toString() {
+        return ma + " "+ten +" "+lop+" "+ngaysinh+" "+gpa;
+    }
+    
+}
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        SinhVien sv = new SinhVien("SV001", sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextDouble());
+        sv.chuanHoa();
+        System.out.println(sv);
+    }
+}
