@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+class PhanSo{
+    private long tuSo, mauSo;
+    
+    public PhanSo(long tuSo, long mauSo){
+        this.tuSo = tuSo;
+        this.mauSo = mauSo;
+    }
+    
+    public long gcd(long a, long b){
+        if(b == 0) return a;
+        else return gcd(b, a % b);
+    }
+    
+    public void rutGon(){
+        long tmp = gcd(this.tuSo, this.mauSo);
+        tuSo /= tmp;
+        mauSo /= tmp;
+    }
+    
+    public PhanSo cong(PhanSo b){
+        long mauRes = this.mauSo * b.mauSo;
+        long tuRes = this.tuSo * b.mauSo + b.tuSo * this.mauSo;
+        PhanSo res = new PhanSo(tuRes, mauRes);
+        res.rutGon();
+        return res;
+    }
+    
+    public PhanSo nhan(PhanSo b){
+        long mauRes = this.mauSo * b.mauSo;
+        long tuRes = this.tuSo * b.tuSo;
+        PhanSo res = new PhanSo(tuRes, mauRes);
+        res.rutGon();
+        return res;
+    }
+    
+    public String toString(){
+        return tuSo + "/" + mauSo;
+    }
+}
+public class Main{
+    public static void main(String[]args){
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t-- > 0){
+            PhanSo a = new PhanSo(sc.nextLong(), sc.nextLong());
+            PhanSo b = new PhanSo(sc.nextLong(), sc.nextLong());
+            a.rutGon();
+            b.rutGon();
+            PhanSo c = (a.cong(b)).nhan(a.cong(b));
+            PhanSo d = (a.nhan(b)).nhan(c);
+            System.out.println(c + " " + d);
+        }
+    }
+}
