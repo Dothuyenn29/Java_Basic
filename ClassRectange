@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+class Rectange {
+        private double width, height;
+        private String mauSac;
+
+    public Rectange(double width, double height, String mauSac) {
+ 
+        this.width = width;
+        this.height = height;
+        this.mauSac = mauSac;
+    }
+        public void chuanHoa(){
+            String newColor ="";
+            newColor += Character.toUpperCase(mauSac.charAt(0));
+            for(int i=1;i< mauSac.length();i++){
+                    newColor += Character.toLowerCase(mauSac.charAt(i));
+            }
+            mauSac = newColor;
+        }
+  
+    public double findPerimeter() {
+            return  ((height + width) * 2);
+    }
+
+    public double findArea(){
+            return (height * width);
+    }
+    public  String toString(){
+            return findPerimeter()+" "+findArea()+" "+ mauSac;
+    }
+}
+public class MainSub{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Rectange rec = new Rectange(sc.nextDouble(),sc.nextDouble(),sc.next());
+        rec.chuanHoa();
+        System.out.println(rec);
+    }
+}
