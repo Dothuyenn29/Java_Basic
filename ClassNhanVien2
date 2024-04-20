@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+
+class NhanVien {
+    private String ma, ten, gioitinh, ngaysinh, diachi, mathue,ngayki;
+
+    public NhanVien(String ma, String ten, String gioitinh, String ngaysinh, String diachi, String mathue, String ngayki) {
+        this.ma = ma;
+        this.ten = ten;
+        this.gioitinh = gioitinh;
+        this.ngaysinh = ngaysinh;
+        this.diachi = diachi;
+        this.mathue = mathue;
+        this.ngayki = ngayki;
+    }
+    public void chuanhoangaysinh(){
+        StringBuilder sb1 =  new StringBuilder(ngaysinh);
+        if(sb1.charAt(1) == '/') sb1.insert(0,"0");
+        if(sb1.charAt(4) ==  '/') sb1.insert(3,"0");
+        ngaysinh = sb1.toString();
+         StringBuilder sb2 =  new StringBuilder(ngayki);
+        if(sb2.charAt(1) == '/') sb2.insert(0,"0");
+        if(sb2.charAt(4) ==  '/') sb2.insert(3,"0");
+        ngayki = sb2.toString();
+    }
+    public void  chuanhoaTen(){
+        String[] arr = ten.split("\\s+");
+        String newName = "";
+        for(String x : arr)
+        {
+            newName += Character.toUpperCase(x.charAt(0));
+            for(int i = 1; i<x.length();i++){
+                newName += Character.toLowerCase(x.charAt(i));
+            }
+            newName +=" ";
+        }
+        ten = newName.trim();
+    }
+    public String toString(){
+        return ma + " "+ten +" "+gioitinh+" "+ngaysinh+" "+diachi+" "+mathue+" "+ngayki;
+    }
+    
+    
+}
+    public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        NhanVien nv = new NhanVien("00001", sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine());
+        nv.chuanhoaTen();
+        nv.chuanhoangaysinh();
+        System.out.println(nv);
+    }
+}
