@@ -1,0 +1,29 @@
+package javaapplication1;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+public class Tansuatxuathienkitu {
+      public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        // Bảng đếm tần suất theo thứ tự từ điển
+        Map<Character, Integer> mp = new TreeMap<>();
+        for (char c : s.toCharArray()) {
+            mp.put(c, mp.getOrDefault(c, 0) + 1);
+        }
+        // In kết quả theo thứ tự từ điển
+        for (Map.Entry<Character, Integer> entry :mp.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+        // In kết quả theo thứ tự xuất hiện
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            if (!sb.toString().contains(String.valueOf(c))) {
+                sb.append(c).append("  ").append(mp.get(c)).append("  ");
+            }
+        }
+        System.out.println(sb.toString().trim()+" ");
+        System.out.println(" ");
+    }
+}
