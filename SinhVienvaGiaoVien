@@ -1,0 +1,102 @@
+public class Nguoi {
+    private  String  ma, ten, ngaySinh,diaChi;
+
+    public Nguoi(String ma, String ten, String ngaySinh, String diaChi){
+        this.ma = ma;
+        this.ten = ten;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+    }
+    public void chuanHoa() {
+        String[] arr = ten.split("\\s+");
+        String newName = " ";
+        for (String x : arr) {
+            newName += Character.toUpperCase(x.charAt(0));
+            for (int i = 1; i < x.length(); i++) {
+                newName += Character.toLowerCase(x.charAt(i));
+            }
+            newName += " ";
+        }
+        ten = newName.trim();
+        StringBuilder sb = new StringBuilder(ngaySinh);
+        if (sb.charAt(1) == '/') sb.insert(0, "0");
+        if (sb.insert(4) == '/') sb.insert(3, "0");
+        ngaySinh = sb.toString();
+    }
+    public String toString(){
+        return  ma +" " + ten +" " + ngaySinh +" " +diaChi;
+    }
+
+}
+
+public class GiaoVien extends Nguoi {
+    private String ma, khoa;
+    private  int luong;
+
+    public GiaoVien(String ma, String khoa, Int  luong, String ten, String ngaySinh, String diaChi ){
+        super( ten, ngaySinh, diaChi);
+        this.ma = ma;
+        this.khoa = khoa;
+        this.luong = luong;
+    }
+        public GiaoVien(){
+            super();
+        }
+        public String toString(){
+            return ma +" " +  super.toString() + " " + khoa +" " + luong;
+        }
+}
+public class SinhVien  extends  Nguoi {
+    private String ma,  lop;
+    private double gpa;
+    public SinhVien(String ma, String lop, Double gpa, String ten, String ngaySinh, String diaChi ){
+        super(ten, ngaySinh, diaChi);
+        this.ma = ma;
+        this.lop = lop;
+        this.gpa = gpa;
+    }
+    public String toString(){
+        return ma +" "+ super.toString()+" "+ lop  +" " + String.format("%.2f", gpa);
+    }
+
+}
+public class Main {
+    public  static void  main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextInt());
+        ArrayList<GiaoVien> list1 = new ArrayList<>();
+        ArrayList<SinhVien> list2 = new ArrayList<>();
+        for(int i = 0; i < n; i++){
+            String ma, ten, ngaySinh, diaChi, lop, khoa;
+            int luong;
+            double gpa;
+            ma = sc.nextLine();
+            if(ma.charAt(0) == 'G')  {
+                ten = sc.nextLine();
+                ngaySinh = sc.nextLine();
+                diaChi = sc.nextLine();
+                khoa = sc.nextLine();
+                luong = Integer.parseInt(sc.nextLine());
+                GiaoVien giaoVien = new GiaoVien(ma, khoa, luong, ten, ngaySinh, diaChi);
+                list1.add(giaoVien);
+            }
+            else {
+                ten = sc.nextLine();
+                ngaySinh = sc.nextLine();
+                diaChi = sc.nextLine();
+                lop = sc.nextLine();
+                gpa = Double.parseDouble(sc.nextLine());
+                SinhVien sinhVien = new SinhVien(ma, lop, gpa, ten, ngaySinh, diaChi);
+                list2.add(sinhVien);
+            }
+        }
+        System.out.println("DANH SACH GIAO VIEN");
+        for (GiaoVien x : list1){
+            System.out.println(x);
+        }
+        System.out.println("DANH SACH SINH VIEN");
+        for(SinhVien x : list2){
+            System.out.println(x);
+        }
+    }
+}
