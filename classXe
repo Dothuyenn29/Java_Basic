@@ -1,0 +1,125 @@
+
+package OOP;
+import java.util.*;
+
+// Lớp cơ sở cho tất cả các loại phương tiện
+class xe {
+    private String ma, ten, hang, mausac;
+    private int gia;
+
+    // Constructor
+    public xe(String ma, String ten, String hang, String mausac, int gia) {
+        this.ma = ma;
+        this.ten = ten;
+        this.hang = hang;
+        this.mausac = mausac;
+        this.gia = gia;
+    }
+
+    // Phương thức lấy hãng xe
+    public String getHang() {
+        return hang;
+    }
+
+    // Phương thức in thông tin cơ bản của xe
+    public void in() {
+        System.out.print(ma + " " + ten + " " + hang + " " + mausac);
+    }
+
+    // Phương thức lấy giá bán của xe
+    public int getGia() {
+        return gia;
+    }
+
+    // Phương thức lấy mã xe
+    public String getMa() {
+        return ma;
+    }
+
+    // Phương thức lấy tên xe
+    public String getTen() {
+        return ten;
+    }
+}
+
+// Lớp Xe máy kế thừa từ lớp Vehicle
+class xemay extends xe {
+    private int tocdo;
+
+    // Constructor
+    public xemay(String ma, String ten, String hang, String mausac, int gia, int tocdo) {
+        super(ma, ten, hang, mausac, gia);
+        this.tocdo = tocdo;
+    }
+
+    // Phương thức in thông tin của xe máy
+    public void in() {
+        super.in();
+        System.out.println(" " + tocdo + " " + super.getGia());
+    }
+}
+
+// Lớp Ô tô kế thừa từ lớp Vehicle
+class oto extends xe {
+    private int maluc;
+
+    // Constructor
+    public oto(String ma, String ten, String hang, String mausac, int gia, int maluc) {
+        super(ma, ten, hang, mausac, gia);
+        this.maluc = maluc;
+    }
+
+    // Phương thức in thông tin của ô tô
+    public void in() {
+        super.in();
+        System.out.println(" " + maluc + " " + super.getGia());
+    }
+}
+
+public class TimKiemXe {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<xemay> v1 = new ArrayList<>();
+        ArrayList<oto> v2 = new ArrayList<>();
+        int n = sc.nextInt();
+        sc.nextLine(); // Loại bỏ newline còn lại sau khi nhập số
+
+        for (int i = 0; i < n; i++) {
+            String ma = sc.nextLine();
+            if (ma.startsWith("O")) {
+                String ten = sc.nextLine();
+                String hang = sc.nextLine();
+                String mau = sc.nextLine();
+                int maluc = sc.nextInt();
+                int gia = sc.nextInt();
+                sc.nextLine(); // Loại bỏ newline còn lại sau khi nhập số
+                oto o = new oto(ma, ten, hang, mau, gia, maluc);
+                v2.add(o);
+            } else {
+                String ten = sc.nextLine();
+                String hang = sc.nextLine();
+                String mau = sc.nextLine();
+                int tocdo = sc.nextInt();
+                int gia = sc.nextInt();
+                sc.nextLine(); // Loại bỏ newline còn lại sau khi nhập số
+                xemay x = new xemay (ma, ten, hang, mau, gia, tocdo);
+                v1.add(x);
+            }
+        }
+
+        String ten = sc.nextLine();
+        System.out.println("DANH SACH OTO:");
+        for (oto x : v2) {
+            if (x.getTen().equals(ten)) {
+                x.in();
+            }
+        }
+
+        System.out.println("DANH SACH XE MAY:");
+        for (xemay x : v1) {
+            if (x.getTen().equals(ten)) {
+                x.in();
+            }
+        }
+    }
+}
