@@ -1,0 +1,44 @@
+import java.util.*;
+
+class Rectangle {
+    private int width, length;
+    private String color;
+
+    public Rectangle(int width, int length, String color) {
+        this.width = width;
+        this.length = length;
+        this.color = color.substring(0, 1).toUpperCase() + color.substring(1).toLowerCase();
+    }
+
+    public int getPerimeter() {
+        return 2 * (width + length);
+    }
+
+    public int getArea() {
+        return width * length;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public String toString() {
+        return getPerimeter() + " " + getArea() + " " + getColor();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        String color = sc.next();
+        if (a > 0 && b > 0) {
+            Rectangle rectangle = new Rectangle(a, b, color);
+            System.out.println(rectangle);
+        } else {
+            System.out.println("INVALID");
+        }
+    }
+}

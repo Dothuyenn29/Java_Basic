@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+class GiaoVien {
+    private String ma, hoTen;
+    private int luongCoBan;
+
+    public GiaoVien(String ma, String hoTen, int luongCoBan) {
+        this.ma = ma;
+        this.hoTen = hoTen;
+        this.luongCoBan = luongCoBan;
+    }
+    public int getBacLuong(){
+        return Integer.parseInt(ma.substring(2));
+    }
+    public int getPhuCap(){
+        String chucVu = ma.substring(0,2);
+        if(chucVu.equals("HT")){
+            return 2000000;
+        }else if(chucVu.equals("HP")){
+            return 900000;
+        }else
+            return 500000;
+    }
+    public int getthuNhap(){
+        return luongCoBan * getBacLuong() + getPhuCap();
+    }
+    public String toString(){
+        return ma+" " + hoTen+" " + getBacLuong()+" "+getthuNhap();
+    }
+}
+public class MainSub{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+       GiaoVien giaovien = new GiaoVien(sc.nextLine(),sc.nextLine(),sc.nextInt());
+  
+        System.out.println(giaovien);
+    }
+}

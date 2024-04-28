@@ -1,0 +1,79 @@
+import java.util.*;
+
+class Point {
+    private float x, y;
+
+    public Point(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public float getX() {
+        return this.x;
+    }
+
+    public float getY() {
+        return this.y;
+    }
+
+    public void print() {
+        System.out.printf("X : %.2f\n", this.x);
+        System.out.printf("Y : %.2f\n", this.y);
+    }
+}
+
+class MovablePoint extends Point {
+    private float xSpeed, ySpeed;
+
+    public MovablePoint(float x, float y, float xSpeed, float ySpeed) {
+        super(x, y);
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
+    }
+
+    public float getXSpeed() {
+        return this.xSpeed;
+    }
+
+    public float getYSpeed() {
+        return this.ySpeed;
+    }
+
+    public void print() {
+        super.print();
+        System.out.printf("X Speed : %.2f\n", this.xSpeed);
+        System.out.printf("Y Speed : %.2f\n", this.ySpeed);
+        System.out.println("-------------------");
+    }
+
+    public MovablePoint move(int m, float x, float y, float xSpeed, float ySpeed) {
+        for (int i = 0; i < m; i++) {
+            x += xSpeed;
+        }
+        for (int i = 0; i < m; i++) {
+            y += ySpeed;
+        }
+        return new MovablePoint(x, y, xSpeed, ySpeed);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        List<MovablePoint> points = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            float x = scanner.nextFloat();
+            float y = scanner.nextFloat();
+            float xSpeed = scanner.nextFloat();
+            float ySpeed = scanner.nextFloat();
+            int m = scanner.nextInt();
+            MovablePoint point = new MovablePoint(x, y, xSpeed, ySpeed);
+            point = point.move(m, x, y, xSpeed, ySpeed);
+            points.add(point);
+        }
+        for (MovablePoint point : points) {
+            point.print();
+        }
+    }
+}
