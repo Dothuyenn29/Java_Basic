@@ -1,0 +1,121 @@
+import java.util.*;
+class Vehicle {
+    private String ma, ten, hang, mausac;
+    private int gia;
+    public Vehicle(String ma, String ten, String hang, String mausac, int gia) {
+        this.ma = ma;
+        this.ten = ten;
+        this.hang = hang;
+        this.mausac = mausac;
+        this.gia = gia;
+    }
+    public String getHang() {
+        return hang;
+    }
+    public void in() {
+        System.out.print(ma + " " + ten + " " + hang + " " + mausac);
+    }
+
+    public int getGia() {
+        return gia;
+    }
+
+    public String getMa() {
+        return ma;
+    }
+}
+
+class XeMay extends Vehicle {
+    private int tocdo;
+
+    public XeMay(String ma, String ten, String hang, String mausac, int gia, int tocdo) {
+        super(ma, ten, hang, mausac, gia);
+        this.tocdo = tocdo;
+    }
+
+    public void in() {
+        super.in();
+        System.out.println(" " + tocdo + " " + super.getGia());
+    }
+}
+class Oto extends Vehicle {
+    private int maluc;
+    public Oto(String ma, String ten, String hang, String mausac, int gia, int maluc) {
+        super(ma, ten, hang, mausac, gia);
+        this.maluc = maluc;
+    }
+    public void in() {
+        super.in();
+        System.out.println(" " + maluc + " " + super.getGia());
+    }
+}
+
+class Cmp1 implements Comparator<XeMay> {
+    @Override
+    public int compare(XeMay a, XeMay b) {
+        if (a.getGia() != b.getGia()) {
+            return a.getGia() - b.getGia();
+        }
+        return a.getMa().compareTo(b.getMa());
+    }
+}
+
+class Cmp2 implements Comparator<Oto> {
+    @Override
+    public int compare(Oto a, Oto b) {
+        if (a.getGia() != b.getGia()) {
+            return a.getGia() - b.getGia();
+        }
+        return a.getMa().compareTo(b.getMa());
+    }
+}
+
+public class MainSub {
+     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<XeMay> v1 = new ArrayList<>();
+        ArrayList<Oto> v2 = new ArrayList<>();
+        int n = sc.nextInt();
+        sc.nextLine(); 
+        for (int i = 0; i < n; i++) {
+            String ma = sc.nextLine();
+            if (ma.startsWith("O")) {
+                String ten = sc.nextLine();
+                String hang = sc.nextLine();
+                String mau = sc.nextLine();
+                int maluc = sc.nextInt();
+                int gia = sc.nextInt();
+                sc.nextLine(); 
+                Oto o = new Oto(ma, ten, hang, mau, gia, maluc);
+                v2.add(o);
+            } else {
+                String ten = sc.nextLine();
+                String hang = sc.nextLine();
+                String mau = sc.nextLine();
+                int tocdo = sc.nextInt();
+                int gia = sc.nextInt();
+                sc.nextLine();
+                XeMay x = new XeMay(ma, ten, hang, mau, gia, tocdo);
+                v1.add(x);
+            }
+        }
+
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        sc.nextLine(); 
+
+        System.out.println("DANH SACH OTO :");
+        for (Oto x : v2) {
+            if (x.getGia() >= a && x.getGia() <= b) {
+                x.in();
+            }
+        }
+
+        System.out.println("DANH SACH XE MAY :");
+        for (XeMay x : v1) {
+            if (x.getGia() >= a && x.getGia() <= b) {
+                x.in();
+            }
+        }
+    }
+}
