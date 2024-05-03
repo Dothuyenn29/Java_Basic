@@ -1,0 +1,45 @@
+package javaoop;
+
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+public class DemPhanPhoiDungMang {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[]a = new int[n];
+        Map<Integer, Integer> mp = new LinkedHashMap<>();
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+            mp.put(a[i], mp.getOrDefault(a[i], 0) + 1);
+        }
+        // Yêu cầu 1: In theo thứ tự xuất hiện
+        for (Map.Entry<Integer, Integer> entry : mp.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+        System.out.println();
+        // Yêu cầu 2: In theo thứ tự từ nhỏ đến lớn
+        mp.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey())
+            .forEach(entry -> System.out.println(entry.getKey() + " " + entry.getValue()));
+        System.out.println();
+        // Yêu cầu 3: Tìm số xuất hiện nhiều nhất
+        int maxn = Collections.max(mp.values());
+        int maxnum = mp.entrySet().stream()
+            .filter(entry -> entry.getValue() == maxn)
+            .max(Map.Entry.comparingByKey())
+            .get()
+            .getKey();
+        System.out.println(maxnum);
+        // Yêu cầu 4: Tìm số xuất hiện ít nhất
+        int minF = Collections.min(mp.values());
+        int minf = mp.entrySet().stream()
+            .filter(entry -> entry.getValue() == minF)
+            .min(Map.Entry.comparingByKey())
+            .get()
+            .getKey();
+        System.out.println(minf);   
+    }
+}
+
