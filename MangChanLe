@@ -1,0 +1,26 @@
+package javaoop;
+
+import java.util.Scanner;
+
+public class MangChanLe {
+    public static void main(String[] args) {
+         Scanner sc = new Scanner(System.in);
+        int demchan = 0;
+        int demle = 0;
+        while (sc.hasNextInt()) {
+            int num = sc.nextInt();
+            if (num % 2 == 0) {
+                demchan++;
+            } else {
+                demle++;
+            }
+        }
+        if (demchan > demle) {
+            System.out.println("CHAN");
+        } else if (demle > demchan) {
+            System.out.println("LE");
+        } else {
+            System.out.println("CHANLE");
+        }
+    }
+} 
