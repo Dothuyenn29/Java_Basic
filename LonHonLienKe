@@ -1,0 +1,25 @@
+package javaoop;
+
+import java.util.Scanner;
+
+public class LonHonLienKe {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Nhập số lượng phần tử và các phần tử của mảng
+        int N = scanner.nextInt();
+        int[] A = new int[N];
+        for (int i = 0; i < N; i++) {
+            A[i] = scanner.nextInt();
+        }
+        
+        // Duyệt qua mảng và tìm các phần tử thỏa mãn điều kiện
+        for (int i = 1; i < N - 1; i++) {
+            if (A[i] > A[i - 1] && A[i] > A[i + 1]) {
+                System.out.print(A[i] + " ");
+            }
+        }
+    }
+}
+
+
