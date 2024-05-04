@@ -1,0 +1,40 @@
+package javaoop;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+public class TanSuatXuatHien {
+     public static void main(String[] args){
+         Scanner sc = new Scanner(System.in);
+         int n = sc.nextInt();
+         TreeMap <Character, Integer>map = new TreeMap<>();
+         for(int i = 0; i<n; i++){
+             char c = sc.next().charAt(0);
+             if(map.containsKey(c)){
+                 map.put(c,map.get(c)+1);
+             }else{
+                 map.put(c, 1);
+             }
+         }
+         Map.Entry<Character, Integer> first = map.firstEntry() ;
+          System.out.println(first.getKey()+" " + first.getValue());
+          System.out.println("");
+         Map.Entry<Character, Integer> last = map.lastEntry() ;
+          System.out.println(last.getKey()+" " + last.getValue());
+          System.out.println("");
+        ArrayList<Map.Entry<Character,Integer>> arr = new ArrayList<>();
+           for(Map.Entry<Character, Integer> entry : map.entrySet()){
+               Character key = entry.getKey();
+               Integer value = entry.getValue();
+               System.out.println(key+" " + value);
+               arr.add(entry);
+           }
+            System.out.println("");
+           for(int i = arr.size() -1;i >= 0; i--){
+               Character key = arr.get(i).getKey();
+               Integer value = arr.get(i).getValue();
+                System.out.println(key+" " + value);
+           }
+     }
+}
+    
