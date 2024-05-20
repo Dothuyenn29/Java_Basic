@@ -1,0 +1,85 @@
+
+package ClassOOP; 
+
+import java.util.Scanner;
+
+class PhanSo {
+    private long tuso,mauso;
+
+    public PhanSo(long tuso, long mauso) {
+        this.tuso = tuso;
+        this.mauso = mauso;
+    }
+// Hàm tính toán Uớc số chung lớn nhất (UCLN)
+    public long UCLN(long a, long b) {
+        if (b == 0) {
+            return a;
+        }
+        return UCLN(b, a % b);
+    }
+   public PhanSo rutGon() {
+        long gcd = UCLN(tuso, mauso);
+        if (gcd != 1) {
+            tuso /= gcd;
+            mauso /= gcd;
+        }
+        return new PhanSo(tuso, mauso);
+    }
+//ham cong hai phan so
+   public PhanSo cong( PhanSo b){
+       long newTuso = b.tuso*mauso + tuso*b.mauso;
+      long newMauso = mauso*b.mauso;
+      return new PhanSo(newTuso,newMauso);
+   }
+        //ham nhan phan so
+   public PhanSo nhan(PhanSo b){
+       long newTuso = tuso * b.tuso;
+       long newMauso = mauso*b.mauso;
+       return new PhanSo(newTuso, newMauso);
+   }
+   
+    //phan so nghich dao
+   public PhanSo nghichdao() {
+       if(tuso == 0){
+           throw new RuntimeException("");
+       }
+       return new PhanSo(tuso, mauso);
+   }
+    //binh phuong phanso
+   public PhanSo binhphuong(){
+      return nhan(this);
+   }
+    @Override
+    public String toString() {
+        return (  tuso + " " + mauso );
+    }
+      public void hienThi() {
+        System.out.print(tuso + "/" + mauso + " ");
+    }
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        for(int i =0; i<n; i++){
+        long tusoA = sc.nextLong();
+        long mausoA = sc.nextLong();
+         long tusoB = sc.nextLong();
+        long mausoB = sc.nextLong();
+        PhanSo a = new PhanSo(tusoA,mausoA);
+         PhanSo b = new PhanSo(tusoB,mausoB);
+         PhanSo c = a.cong(b).binhphuong().rutGon();
+         c.hienThi();
+         
+            PhanSo d = a.nhan(b).nhan(c).rutGon();
+            d.hienThi();
+
+            System.out.println(" ");
+        }
+    } 
+}
+
+
+
+
+    
+
